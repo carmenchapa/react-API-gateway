@@ -83,7 +83,7 @@ class Products extends Component {
 				{this.props.products.map((products, i) =>
 				
 				  <li key={products.id} id={i} style={this.state[i].isVisible ? bolder : null} onClick={(e) => this.handleChange(products.id, true, i)} >{products.title} 
-				  <Apples key={products.id} id={products.id} ref={(i) => {this.i = i}} name={i} products={products}  buttonNumber={i} openPanel={this.onButtonClicked} style={this.state[i].isVisible ? nonHidden : hidden} />
+				  <Description key={products.id} id={products.id} ref={(i) => {this.i = i}} name={i} products={products}  buttonNumber={i} openPanel={this.onButtonClicked} style={this.state[i].isVisible ? nonHidden : hidden} />
 				  </li>
 				)}
 				
@@ -94,30 +94,10 @@ class Products extends Component {
 
 
 
-class Apples extends Component {
-	static propTypes = {
-	// products: PropTypes.array.isRequired
-	}
-
-	constructor(props) {
-	    super(props);
-	    this.state = { isVisible: false }
-    	this.onClick = this.onClick.bind(this)	
-	}
-
-	onClick () {
-		console.log('onClick')
-	    this.setState({
-	      isVisible: !this.state.isVisible
-	    })
-	    this.props.openPanel(this.props.buttonNumber)
-	}
-
-	//style={this.state.isVisible ? hidden : nonHidden}
-
+class Description extends Component {
 	render(){
 		return(
-			<p ref={(i) => {this.i = i}} onClick={(e) => this.onClick(e)} style={this.props.style} >{this.props.products.description}</p>
+			<p ref={(i) => {this.i = i}} style={this.props.style} >{this.props.products.description}</p>
 		)
 	}
 }
