@@ -37,6 +37,7 @@ class App extends Component {
   }
 
   handleSearch = (e) => {
+    e.preventDefault()
     console.log(e.target.input.value)
     let browse = e.target.input.value
 
