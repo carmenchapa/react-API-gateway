@@ -14,8 +14,6 @@ const bolder = {
 }
 
 
-
-
 class Products extends Component {
 
 	static propTypes = {
@@ -34,11 +32,9 @@ class Products extends Component {
 	}
 
 	handleChange(index) {
-
-		console.log(index)
-		console.log(this.state)
-		console.log(this.state[index])
-
+		// console.log(index)
+		// console.log(this.state)
+		// console.log(this.state[index])
         this.setState((state, props) => {
 			return props.products.map((products, i) => {return {id: i, isVisible: (i===index && !this.state[index].isVisible) ? true : (i===index && this.state[index].isVisible) ? false : this.state[i].isVisible}})
        });
@@ -47,8 +43,7 @@ class Products extends Component {
 	render() {
 		return(
 			<ul>
-				{this.props.products.map((products, i) =>
-				
+				{this.props.products.map((products, i) =>				
 				  <li key={products.id} style={this.state[i].isVisible ? bolder : null} onClick={(e) => this.handleChange(i)} >{products.title} 
 				  <Description key={products.id} products={products} style={this.state[i].isVisible ? nonHidden : hidden} />
 				  </li>
@@ -67,8 +62,6 @@ const Description = ({...props}) => <p style={props.style} >{props.products.desc
 // 		)
 // 	}
 // }
-
-
 
 
 export default Products

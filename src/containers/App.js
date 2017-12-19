@@ -1,59 +1,63 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { /*selectSubreddit,invalidateSubreddit,*/ selectCategory, fetchPostsIfNeeded, fetchProductsIfNeeded } from '../actions'
-// import Picker from '../components/Picker'
+import { selectCategory, fetchPosts, fetchProducts } from '../actions'
+
+import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Products from '../components/Products'
 
 class App extends Component {
   static propTypes = {
-    // selectedSubreddit: PropTypes.string.isRequired,
     posts: PropTypes.array.isRequired,
-    // isFetching: PropTypes.bool.isRequired,
-    // lastUpdated: PropTypes.number,
     dispatch: PropTypes.func.isRequired
   }
 
   componentDidMount() {
     const { dispatch, selectedSubreddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    dispatch(fetchPosts(selectedSubreddit))
     //
-    dispatch(fetchProductsIfNeeded(selectedSubreddit))
+    dispatch(fetchProducts(selectedSubreddit))
 
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
       const { dispatch, selectedSubreddit } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedSubreddit))
+      dispatch(fetchPosts())
       //
-      dispatch(fetchProductsIfNeeded(selectedSubreddit))
+      dispatch(fetchProducts(selectedSubreddit))
     }
   }
 
-  handleChange = nextSubreddit => {
+  getCategory = nextSubreddit => {
+    console.log(nextSubreddit);
     this.props.dispatch(selectCategory(nextSubreddit))
+    this.props.dispatch(fetchProducts(nextSubreddit))
+  }
+
+  handleSearch = (e) => {
+    console.log(e.target.input.value)
+
   }
 
   handleRefreshClick = e => {
     e.preventDefault()
 
     const { dispatch, selectedSubreddit } = this.props
-    // dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
-    //
-    dispatch(fetchProductsIfNeeded(selectedSubreddit))
+    dispatch(fetchPosts())
+    dispatch(fetchProducts(selectedSubreddit))
 
   }
 
 
   render() {
-    const { /*selectedSubreddit,isFetching, lastUpdated*/ posts, products } = this.props
+    const { posts, products } = this.props
     return (
       <div>
            <div>
-              <Posts posts={posts} />
+              <Picker getValue={this.handleSearch}/>
+              <Posts posts={posts} getCategory={this.getCategory} />
               <Products products={products}/>
             </div>
       </div>
@@ -66,22 +70,18 @@ const mapStateToProps = state => {
   const {
     items: posts
   } = postsBySubreddit[selectedSubreddit] || {
-    // isFetching: true,
     items: []
   }
   const {
-    products: products
+    products
   } = productsBySubreddit[selectedSubreddit] || {
-    // isFetching: true,
     products: []
   }
 
 
   return {
-    selectedSubreddit,
     posts,
     products
-
   }
 }
 
