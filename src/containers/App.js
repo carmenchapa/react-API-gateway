@@ -38,6 +38,7 @@ class App extends Component {
 
   handleSearch = (e) => {
     console.log(e.target.input.value)
+    let browse = e.target.input.value
 
   }
 
@@ -55,9 +56,9 @@ class App extends Component {
     const { posts, products } = this.props
     return (
       <div>
-           <div>
-              <Picker getValue={this.handleSearch}/>
+           <div>            
               <Posts posts={posts} getCategory={this.getCategory} />
+              <Picker getValue={this.handleSearch}/>
               <Products products={products}/>
             </div>
       </div>
