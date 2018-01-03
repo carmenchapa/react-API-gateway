@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { selectCategory, fetchPosts, fetchProducts } from '../actions'
 
 import Picker from '../components/Picker'
-import Posts from '../components/Posts'
+import Categories from '../components/Categories'
 import Products from '../components/Products'
 
 class App extends Component {
@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <div>
            <div>            
-              <Posts posts={posts} getCategory={this.getCategory} />
+              <Categories posts={posts} getCategory={this.getCategory} />
               <Picker getValue={this.handleSearch}/>
               <Products products={products}/>
             </div>
@@ -79,7 +79,6 @@ const mapStateToProps = state => {
   } = productsBySubreddit[selectedSubreddit] || {
     products: []
   }
-
 
   return {
     posts,
