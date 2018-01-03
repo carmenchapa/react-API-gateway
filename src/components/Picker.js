@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 class Picker extends React.Component {
 
@@ -12,11 +12,10 @@ class Picker extends React.Component {
             </div>
         )
     }
-
 }
 
-Picker.propTypes = {
-  // onSubmit: PropTypes.func.isRequired
-}
+// Picker.propTypes = {
+//   // onSubmit: PropTypes.func.isRequired
+// }
 
 export default Picker
