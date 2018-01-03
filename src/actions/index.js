@@ -30,20 +30,20 @@ export const requestProducts = subreddit => ({
   // subreddit
 })
 
-export const receiveCategory = (subreddit, json) => {
+export const receiveCategory = (json) => {
 	return (dispatch, getState) => {
 	  const category = getState().selectedCategory
 	  console.log(category)
-	  dispatch(receiveProducts(subreddit, json, category))
+	  dispatch(receiveProducts( json, category))
 	}  
 }
 
-export const receiveProducts = (subreddit, json, category) => ({
+export const receiveProducts = (json, category) => ({
   type: RECEIVE_PRODUCTS,
   products: json.data.filter(child => child.categories.some(kid => kid.title===category))
 })
 
-export const receiveSearch = (subreddit, json, category) => ({
+export const receiveSearch = (json, category) => ({
   type: RECEIVE_PRODUCTS,
   products: json.data.filter(child => child.categories.some(kid => kid.title===category) && child.title.match("Valle"))
 })
@@ -53,12 +53,12 @@ export const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts())
   return fetch(`https://api.gousto.co.uk/products/v2.0/categories`)
     .then(response => response.json())
-    .then(json => dispatch(receivePosts( json)))
+    .then(json => dispatch(receivePosts(json)))
 }
 
 export const fetchProducts = subreddit => dispatch => {
-  dispatch(requestProducts(subreddit))
+  dispatch(requestProducts())
   return fetch(`https://api.gousto.co.uk/products/v2.0/products?includes[]=categories&includes[]=attributes&sort`)
     .then(response => response.json())
-    .then(json => dispatch(receiveCategory(subreddit, json)))
+    .then(json => dispatch(receiveCategory(json)))
 }
