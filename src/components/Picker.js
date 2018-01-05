@@ -14,8 +14,4 @@ class Picker extends React.Component {
     }
 }
 
-// Picker.propTypes = {
-//   // onSubmit: PropTypes.func.isRequired
-// }
-
 export default Picker

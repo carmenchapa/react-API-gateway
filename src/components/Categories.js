@@ -16,60 +16,45 @@ const selected = {
 // const Categories = ({posts, getCategory}) => (
 class Categories extends Component {
 	static propTypes = {
-	posts: PropTypes.array.isRequired
-	}
-	constructor(props) {
-	    super(props);
-    	this.handleClick = this.handleClick.bind(this)	
+	categories: PropTypes.array.isRequired,
+	styles: PropTypes.array.isRequired
 	}
 
+	// const initialState = {
+	//     styles: [],
+	// };
+	constructor(props) {
+	    super(props)    	
+	}
+	
 	componentWillReceiveProps(nextProps){
 		this.setState((prevState, props) => {
-			console.log("state: ", this.state)
-			console.log("prevState: ", prevState)
-			// if (prevState) {
-			  return props.posts.map((posts, i) => {return {id: i, selected: false}})
-			// }
-		// else {
-		// 	return prevState
-		// }
+			console.log(props.styles)
+			return props.styles
+			// return props.categories.map((posts, i) => {return {id: i, selected: false}})
+			  // return this.state === null || {} ? (props.categories.map((categories, i) => {return {id: i, selected: false}})) : this.state
 		}); 
-	}
 
-	handleClick(index, title){
-		this.setState((state, props) => {
-			console.log(state)
-			return props.posts.map((posts, i) => {return {id: i, selected: (i===index && !this.state[index].selected) ? true : (i===index && this.state[index].selected) ? false : this.state[i].selected}})
-       });
-		console.log(this.state)
-
-		this.props.getCategory(title)
 	}
 
 	render(){
+		
 		return(
 		  <ul>
-		    {this.props.posts.map((post, i) =>
-		      <li key={i} onClick={()=>this.handleClick(i, post.title)} style={ this.state[i].selected ? selected : nonselected }>{post.title}</li>
+		    {this.props.categories.map((categories, i) =>
+		      <li key={i} onClick={()=>this.props.getCategory(categories.title, i)} style={ (this.props.styles[i] && this.props.styles[i].selected === true) ? selected : nonselected }>{categories.title}</li>
 		    )}
 		  </ul>
 		)
 	}
+// style={ this.props.styles[i].selected ? selected : nonselected }
+// style={ Object.values(this.props.styles[i]).selected ? selected : nonselected }
 
-	// render(){
-	// 	return(
-	// 	  <ul>
-	// 	    {this.props.posts.map((post, i) =>
-	// 	      <li key={i} onClick={()=>this.props.getCategory(post.title)} style={ nonselected }>{post.title}</li>
-	// 	    )}
-	// 	  </ul>
-	// 	)
-	// }
 }
-// )
+
 
 Categories.propTypes = {
-  posts: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired
 }
 
 export default Categories

@@ -10,7 +10,8 @@ const nonHidden = {
 	fontWeight: 'normal'
 }
 const bolder = {
-	fontWeight: 'bold'
+	fontWeight: 'bold',
+	paddingTop: '5px'
 }
 
 
