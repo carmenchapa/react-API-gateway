@@ -9,7 +9,7 @@ import {
 
 
 
-//make categories styling in a different const 
+//check this file, what is needed and what's not 
 const styles = (state = {
 	styles: [],
 }, action) => {
@@ -17,8 +17,6 @@ const styles = (state = {
 		case STYLE_CATEGORIES:
 		return {
 			...state,
-			// styles: categoriesStyles
-        	// styles: action.categoriesItems.map((category, i) => {return {id: category.title, selected: false}})
 		}
 	
 	default:
@@ -100,18 +98,6 @@ const styledCategoriesList = (state = { }, action) => {
     	}
 }
 
-// const selectedCategory = (state = 'Drinks Cabinet', action) => {
-//   switch (action.type) {
-//     case SELECT_CATEGORY:
-//       return {
-//       	...state,
-//       	[action.category]: action.category
-//       }
-//     default:
-//       return state
-//   }
-// }
-
 const categoriesList = (state = { }, action) => {
   switch (action.type) {
   	case SELECT_CATEGORY:
@@ -139,14 +125,11 @@ const productsListByCategory = (state = { }, action) => {
   }
 }
 
-
 const rootReducer = combineReducers({
   categoriesList,
   productsListByCategory,
   selectedCategory,
   styledCategoriesList
-  /*,
-  selectedSubreddit*/
 })
 
 export default rootReducer

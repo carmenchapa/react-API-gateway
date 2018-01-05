@@ -14,11 +14,6 @@ export const selectCategory = category => ({
   category
 })
 
-// export const styleCategories = category => ({
-//   type: STYLE_CATEGORIES,
-//   category
-// })
-
 export const getCategoriesList = (index) => {
 	console.log("index: ", index)
 	return (dispatch, getState) => {
@@ -64,7 +59,6 @@ export const receiveProducts = (json, category, browse) => ({
   type: RECEIVE_PRODUCTS,
   productsItems: json.data.filter(child => child.categories.some(kid => kid.title===category) && child.title.match(browse))
 })
-
 
 export const fetchCategories = () => dispatch => {
 	console.log("----------CATEGORIES FETCHING---------")

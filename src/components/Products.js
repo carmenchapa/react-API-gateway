@@ -53,13 +53,5 @@ class Products extends Component {
 
 const Description = ({...props}) => <p style={props.style} >{props.products.description}</p>
 
-// class Description extends Component {
-// 	render(){
-// 		return(
-// 			<p style={this.props.style} >{this.props.products.description}</p>
-// 		)
-// 	}
-// }
-
 
 export default Products

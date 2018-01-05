@@ -20,23 +20,6 @@ class Categories extends Component {
 	styles: PropTypes.array.isRequired
 	}
 
-	// const initialState = {
-	//     styles: [],
-	// };
-	constructor(props) {
-	    super(props)    	
-	}
-	
-	componentWillReceiveProps(nextProps){
-		this.setState((prevState, props) => {
-			console.log(props.styles)
-			return props.styles
-			// return props.categories.map((posts, i) => {return {id: i, selected: false}})
-			  // return this.state === null || {} ? (props.categories.map((categories, i) => {return {id: i, selected: false}})) : this.state
-		}); 
-
-	}
-
 	render(){
 		
 		return(
@@ -47,9 +30,6 @@ class Categories extends Component {
 		  </ul>
 		)
 	}
-// style={ this.props.styles[i].selected ? selected : nonselected }
-// style={ Object.values(this.props.styles[i]).selected ? selected : nonselected }
-
 }
 
 

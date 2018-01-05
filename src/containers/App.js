@@ -13,24 +13,12 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  constructor(props) {
-      super(props)
-      // this.handleClick = this.handleClick.bind(this)   
-      // this.state = this.props.categories.map((categories, i) => {return {id: i, selected: false}})
-    
-  }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(fetchCategories())
     dispatch(fetchProducts())
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //       const rerender = this.props !== nextProps
-  //       // const differentDone = this.props.done !== nextProps.done
-  //       return rerender
-  //   }
 
   componentWillReceiveProps(nextProps) {
     // console.log(nextProps.category)
@@ -40,20 +28,16 @@ class App extends Component {
       dispatch(fetchCategories())
       dispatch(fetchProducts())
     }
+
+    //check why is this important
     this.setState((prevState, props) => {
       return props.categories.map((categories, i) => {return {id: i, selected: false}})
     })
-    // console.log(categories)
-    // console.log(this.state)
 
   }
 
   getCategory = (nextCategory, index) => {
-    // console.log(nextCategory);
-    // console.log(this.state)
-    this.setState((state, props) => {
-      return props.categories.map((categories, i) => {return {id: i, selected: (i===index && !this.state[index].selected) ? true : (i===index && this.state[index].selected) ? false : this.state[i].selected}})
-    })
+
     this.props.dispatch(selectCategory(nextCategory))
     this.props.dispatch(styleCategories(nextCategory))
     this.props.dispatch(fetchProducts())
@@ -66,11 +50,9 @@ class App extends Component {
     this.props.dispatch(fetchProducts(browse))
   }
 
-
   render() {
     const { categories, products, styles } = this.props
-    // console.log(this.props.styles)
-    // console.log(this.state)
+
     return (
       <div>
         <div>            
