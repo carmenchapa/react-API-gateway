@@ -1,28 +1,9 @@
 import { combineReducers } from 'redux'
 import {
   SELECT_CATEGORY, STYLE_CATEGORIES,
-
   REQUEST_CATEGORIES, RECEIVE_CATEGORIES,
-
   REQUEST_PRODUCTS, RECEIVE_PRODUCTS
 } from '../actions'
-
-
-
-//check this file, what is needed and what's not 
-const styles = (state = {
-	styles: [],
-}, action) => {
-	switch (action.type) {
-		case STYLE_CATEGORIES:
-		return {
-			...state,
-		}
-	
-	default:
-      return state
-  }
-}
 
 const categories = (state = {
   categories: [],
@@ -42,20 +23,11 @@ const categories = (state = {
         categories: action.categoriesItems,
         styles: action.categoriesStyles
       }
-    // case STYLE_CATEGORIES:
-      // return {
-      //   ...state,
-      //   categories: action.categoriesItems,
-      //   styles: action.categoriesItems.map((category, i) => {return {id: category.title, selected: false}})
-      // }
-
+   
     default:
       return state
   }
 }
-
-
-
 
 const products = (state = {
   products: []
@@ -91,7 +63,7 @@ const styledCategoriesList = (state = { }, action) => {
     case STYLE_CATEGORIES:
     	return {
     		...state,
-    		[action.categories]: categories(state[action.categories], action)
+    		[action.styles]: categories(state[action], action)
     	}
     default:
       return state

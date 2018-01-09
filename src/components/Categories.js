@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const nonselected = {
 	display: 'inline-block',
 	padding: '20px'
 }
-
 const selected = {
 	display: 'inline-block',
 	padding: '20px',
@@ -13,28 +12,18 @@ const selected = {
 	textDecoration: 'underline'
 }
 
-// const Categories = ({posts, getCategory}) => (
-class Categories extends Component {
-	static propTypes = {
-	categories: PropTypes.array.isRequired,
-	styles: PropTypes.array.isRequired
-	}
-
-	render(){
-		
-		return(
+const Categories = ({...props}) => {
+	return(
 		  <ul>
-		    {this.props.categories.map((categories, i) =>
-		      <li key={i} onClick={()=>this.props.getCategory(categories.title, i)} style={ (this.props.styles[i] && this.props.styles[i].selected === true) ? selected : nonselected }>{categories.title}</li>
+		    {props.categories.map((categories, i) =>
+		      <li key={i} onClick={()=>props.getCategory(categories.title, i)} style={ (props.styles[i] && props.styles[i].selected === true) ? selected : nonselected }>{categories.title}</li>
 		    )}
 		  </ul>
 		)
-	}
 }
-
-
 Categories.propTypes = {
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  styles: PropTypes.array.isRequired
 }
 
 export default Categories

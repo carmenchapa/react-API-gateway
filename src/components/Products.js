@@ -32,7 +32,7 @@ class Products extends Component {
 		}); 
 	}
 
-	handleChange(index) {
+	handleChange = (index) => {
         this.setState((state, props) => {
 			return props.products.map((products, i) => {return {id: i, isVisible: (i===index && !this.state[index].isVisible) ? true : (i===index && this.state[index].isVisible) ? false : this.state[i].isVisible}})
        });
