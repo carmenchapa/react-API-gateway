@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+const ulStyle = {
+	paddingLeft: '60px',
+	paddingTop: '30px'
+}
 
 const hidden = {
 	display: 'none',
@@ -44,7 +48,7 @@ class Products extends Component {
 
 	render() {
 		return(
-			<ul>
+			<ul style={ulStyle}>
 				{this.props.products.map((products, i) =>				
 				  <li key={products.id} style={this.state[i].isVisible ? bolder : regular} onClick={(e) => this.handleChange(i)} >{products.title} 
 				  <Description key={products.id} products={products} style={this.state[i].isVisible ? nonHidden : hidden} />

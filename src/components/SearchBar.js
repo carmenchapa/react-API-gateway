@@ -1,8 +1,12 @@
 import React from 'react'
 
+const barStyle = {
+  paddingLeft: '60px'
+}
+
 const SearchBar = ({getValue}) => {
   return (
-            <div>
+            <div style={barStyle}>
                 <form onSubmit= {getValue} >
                   <input type="text" name="input" />
                 </form>
