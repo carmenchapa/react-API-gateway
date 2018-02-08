@@ -6,12 +6,16 @@ const hidden = {
 	display: 'none',
 }
 const nonHidden = {
-	display: 'inline-block',
+	display: 'block',
 	fontWeight: 'normal'
 }
+const regular = {
+	listStyleType: 'none'
+}
 const bolder = {
+	display: 'block',
 	fontWeight: 'bold',
-	paddingTop: '5px'
+	// paddingTop: '5px'
 }
 
 
@@ -42,7 +46,7 @@ class Products extends Component {
 		return(
 			<ul>
 				{this.props.products.map((products, i) =>				
-				  <li key={products.id} style={this.state[i].isVisible ? bolder : null} onClick={(e) => this.handleChange(i)} >{products.title} 
+				  <li key={products.id} style={this.state[i].isVisible ? bolder : regular} onClick={(e) => this.handleChange(i)} >{products.title} 
 				  <Description key={products.id} products={products} style={this.state[i].isVisible ? nonHidden : hidden} />
 				  </li>
 				)}
