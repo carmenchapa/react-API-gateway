@@ -1,6 +1,6 @@
 # React API Gateway
 
-Solution to the gousto Frontend API Test.
+Solution to the Gousto Frontend API Test.
  
 ## Install
 
